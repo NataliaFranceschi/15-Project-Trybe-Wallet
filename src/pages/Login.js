@@ -35,7 +35,7 @@ class Login extends React.Component {
     const { email, password } = this.state;
 
     dispatch(login({ email, password }));
-    history.push('/customers');
+    history.push('/carteira');
   };
 
   render() {
