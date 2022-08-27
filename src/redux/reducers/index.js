@@ -4,7 +4,7 @@ import walletReducer from './wallet';
 
 const rootReducers = combineReducers({
   wallet: walletReducer,
-  login: userReducer,
+  user: userReducer,
 });
 
 export default rootReducers;
