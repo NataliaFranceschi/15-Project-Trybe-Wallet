@@ -127,6 +127,7 @@ WalletForm.propTypes = {
   data: PropTypes.objectOf(
     PropTypes.object.isRequired,
   ).isRequired,
+  expenses: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
 };
 
 function mapStateToProps(state) {

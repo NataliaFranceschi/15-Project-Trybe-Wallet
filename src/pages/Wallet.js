@@ -1,58 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import Header from '../components/Header';
 import WalletForm from '../components/WalletForm';
 import { deleteExpense } from '../redux/actions';
 
 class Wallet extends React.Component {
-  /* currencyName = (currency) => {
-    switch (currency) {
-    case 'USD': {
-      return 'Dólar Americano';
-    }
-    case 'CAD': {
-      return 'Dólar Canadense';
-    }
-    case 'GBP': {
-      return 'Libra Esterlina';
-    }
-    case 'ARS': {
-      return 'Peso Argentino';
-    }
-    case 'BTC': {
-      return 'Bitcoin';
-    }
-    case 'LTC': {
-      return 'Litecoin';
-    }
-    case 'EUR': {
-      return 'Euro';
-    }
-    case 'JPY': {
-      return 'Iene Japonês';
-    }
-    case 'CHF': {
-      return 'Franco Suiço';
-    }
-    case 'AUD': {
-      return 'Dólar Australiano';
-    }
-    case 'CNY': {
-      return 'Yuan Chinês';
-    }
-    case 'CNY': {
-      return 'Shekel Israelense';
-    }
-    case 'ETH': {
-      return 'Ether';
-    }
-    case 'XRP': {
-      return 'Ripple';
-    }
-    case 'DOGE': {
-      return 'Dogecoin';
-    }
-  }; */
   delete = ({ target }) => {
     const { dispatch } = this.props;
     dispatch(deleteExpense(target.parentElement.id));
@@ -85,16 +38,20 @@ class Wallet extends React.Component {
                   <td>{expense.description}</td>
                   <td>{expense.tag}</td>
                   <td>{expense.method}</td>
-                  <td>{expense.value}</td>
-                  <td>{expense.currency}</td>
-                  <td>{expense.exchangeRates[expense.currency].ask}</td>
+                  <td>{Number(expense.value).toFixed(2)}</td>
+                  <td>{expense.exchangeRates[expense.currency].name}</td>
+                  <td>
+                    {Number(expense.exchangeRates[expense.currency].ask)
+                      .toFixed(2)}
+
+                  </td>
                   <td>
                     {(expense.value * expense.exchangeRates[expense.currency].ask)
                       .toFixed(2)}
                   </td>
                   <td>Real</td>
                   <td id={ expense.id }>
-                    <button type="button">Editar</button>
+                    <button type="button" data-testid="edit-btn">Editar despesa</button>
                     <button
                       type="button"
                       data-testid="delete-btn"
@@ -120,15 +77,9 @@ function mapStateToProps(state) {
   };
 }
 
-/* Wallet.propTypes = {
+Wallet.propTypes = {
   dispatch: PropTypes.func.isRequired,
-   expenses: PropTypes.shape({
-    value: PropTypes.string.isRequired,
-    currency: PropTypes.string.isRequired,
-    exchangeRates: PropTypes.shape({
-      ask: PropTypes.string.isRequired,
-    }),
-  }).isRequired,
-}; */
+  expenses: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
+};
 
 export default connect(mapStateToProps)(Wallet);
