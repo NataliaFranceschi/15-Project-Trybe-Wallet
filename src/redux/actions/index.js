@@ -1,10 +1,10 @@
-export const ADD_EXPENSES = 'ADD_EXPENSES';
-export const DELETE_EXPENSES = 'DELETE_EXPENSES';
+export const ADD_EXPENSE = 'ADD_EXPENSES';
+export const DELETE_EXPENSE = 'DELETE_EXPENSES';
 export const USER = 'USER';
 
-export const addExpenses = (value) => ({ type: ADD_EXPENSES, data: value });
+export const addExpense = (payload) => ({ type: ADD_EXPENSE, payload });
 
-export const deleteExpenses = (value) => ({ type: DELETE_EXPENSES, value });
+export const deleteExpense = (value) => ({ type: DELETE_EXPENSE, value });
 
 export const user = (value) => ({ type: USER, value });
 
@@ -34,10 +34,9 @@ export function fetchCurrenciesAPI() {
 
       const response = await fetch(DATA_API);
       const data = await response.json();
-      const object = Object.keys(data);
-      const result = object.filter((currency) => currency !== 'USDT');
+      delete data.USDT;
 
-      dispatch(getCurrenciesSuccess(result));
+      dispatch(getCurrenciesSuccess(data));
     } catch (e) {
       console.log(e);
       dispatch(getCurrenciesFailure(e.message));

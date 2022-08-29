@@ -1,10 +1,13 @@
-import { ADD_EXPENSES, DELETE_EXPENSES, GET_CURRENCIES,
+import { ADD_EXPENSE, DELETE_EXPENSE, GET_CURRENCIES,
   GET_CURRENCIES_SUCCESS, GET_CURRENCIES_FAILURE } from '../actions';
 
 const initialState = {
   currencies: [],
   error: null,
   loading: false,
+  dataAPI: {},
+  expenses: [],
+  total: 0,
 };
 
 function walletReducer(state = initialState, action) {
@@ -17,7 +20,8 @@ function walletReducer(state = initialState, action) {
   case GET_CURRENCIES_SUCCESS:
     return {
       ...state,
-      currencies: action.data,
+      currencies: Object.keys(action.data),
+      dataAPI: action.data,
       error: null,
       loading: false,
     };
@@ -27,10 +31,16 @@ function walletReducer(state = initialState, action) {
       error: action.error,
       loading: false,
     };
-  case ADD_EXPENSES:
-    return [...state, action.data];
-  case DELETE_EXPENSES:
-    return state.filter((expense) => expense !== action.value);
+  case ADD_EXPENSE:
+    return {
+      ...state,
+      expenses: [...state.expenses, action.payload],
+    };
+  case DELETE_EXPENSE:
+    return {
+      ...state,
+      expenses: state.expenses.filter((expense) => expense.id !== Number(action.value)),
+    };
   default:
     return state;
   }
