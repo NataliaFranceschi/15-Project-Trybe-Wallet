@@ -58,7 +58,8 @@ class WalletForm extends Component {
           </select>
         </label>
         {
-          edit ? <button type="button" onClick={ changeExpenses }>Editar despesa</button>
+          edit
+            ? <button type="button" onClick={ changeExpenses }>Editar despesa</button>
             : <button type="button" onClick={ handleClick }>Adicionar Despesa</button>
         }
       </form>

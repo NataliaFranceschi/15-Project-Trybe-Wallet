@@ -5,6 +5,7 @@ import Header from '../components/Header';
 import WalletForm from '../components/WalletForm';
 import { deleteExpense, fetchCurrenciesAPI,
   addExpense, editExpense } from '../redux/actions';
+import Table from '../components/Table';
 
 class Wallet extends React.Component {
   constructor() {
@@ -89,13 +90,12 @@ class Wallet extends React.Component {
     this.setState({ edit: false });
   };
 
-  delete = ({ target }) => {
+  deleteItem = ({ target }) => {
     const { dispatch } = this.props;
     dispatch(deleteExpense(target.parentElement.id));
   };
 
   render() {
-    const { expenses } = this.props;
     return (
       <div>
         <Header />
@@ -105,62 +105,7 @@ class Wallet extends React.Component {
           handleClick={ this.handleClick }
           changeExpenses={ this.changeExpenses }
         />
-        <table>
-          <thead>
-            <tr>
-              <th>Descrição</th>
-              <th>Tag</th>
-              <th>Método de pagamento</th>
-              <th>Valor</th>
-              <th>Moeda</th>
-              <th>Câmbio utilizado</th>
-              <th>Valor convertido</th>
-              <th>Moeda de conversão</th>
-              <th>Editar/Excluir</th>
-            </tr>
-          </thead>
-          <tbody>
-            {
-              expenses.map((expense) => (
-                <tr key={ expense.id }>
-                  <td>{expense.description}</td>
-                  <td>{expense.tag}</td>
-                  <td>{expense.method}</td>
-                  <td>{Number(expense.value).toFixed(2)}</td>
-                  <td>{expense.exchangeRates[expense.currency].name}</td>
-                  <td>
-                    {Number(expense.exchangeRates[expense.currency].ask)
-                      .toFixed(2)}
-
-                  </td>
-                  <td>
-                    {(expense.value * expense.exchangeRates[expense.currency].ask)
-                      .toFixed(2)}
-                  </td>
-                  <td>Real</td>
-                  <td id={ expense.id }>
-                    <button
-                      type="button"
-                      data-testid="edit-btn"
-                      onClick={ this.editExpense }
-                    >
-                      Editar despesa
-
-                    </button>
-                    <button
-                      type="button"
-                      data-testid="delete-btn"
-                      onClick={ this.delete }
-                    >
-                      Excluir
-
-                    </button>
-                  </td>
-                </tr>
-              ))
-            }
-          </tbody>
-        </table>
+        <Table editExpense={ this.editExpense } deleteItem={ this.deleteItem } />
       </div>
     );
   }
