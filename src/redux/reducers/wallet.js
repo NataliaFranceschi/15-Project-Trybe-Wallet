@@ -1,4 +1,4 @@
-import { ADD_EXPENSE, DELETE_EXPENSE, GET_CURRENCIES,
+import { ADD_EXPENSE, DELETE_EXPENSE, GET_CURRENCIES, EDIT_EXPENSE,
   GET_CURRENCIES_SUCCESS, GET_CURRENCIES_FAILURE } from '../actions';
 
 const initialState = {
@@ -7,7 +7,6 @@ const initialState = {
   loading: false,
   dataAPI: {},
   expenses: [],
-  total: 0,
 };
 
 function walletReducer(state = initialState, action) {
@@ -39,7 +38,19 @@ function walletReducer(state = initialState, action) {
   case DELETE_EXPENSE:
     return {
       ...state,
-      expenses: state.expenses.filter((expense) => expense.id !== Number(action.value)),
+      expenses: (state.expenses
+        .filter((expense) => expense.id !== Number(action.value))),
+    };
+  case EDIT_EXPENSE:
+    return {
+      ...state,
+      expenses: state.expenses.map((expense) => {
+        if (expense.id === action.payload.id) {
+          Object.assign(expense, action.payload);
+          return expense;
+        }
+        return expense;
+      }),
     };
   default:
     return state;
