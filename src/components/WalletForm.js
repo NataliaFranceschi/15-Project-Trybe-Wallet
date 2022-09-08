@@ -5,12 +5,13 @@ import PropTypes from 'prop-types';
 class WalletForm extends Component {
   render() {
     const { dataCurrency, handleChange, handleClick, value,
-      description, edit, changeExpenses } = this.props;
+      description, edit, changeExpenses, method, tag, currency } = this.props;
     return (
       <form>
         <label htmlFor="value-input">
           Despesa:
           <input
+            className="input is-primary value"
             type="text"
             data-testid="value-input"
             name="value"
@@ -21,6 +22,7 @@ class WalletForm extends Component {
         <label htmlFor="description-input">
           Descrição:
           <input
+            className="input is-primary"
             type="text"
             data-testid="description-input"
             name="description"
@@ -30,37 +32,72 @@ class WalletForm extends Component {
         </label>
         <label htmlFor="currency-input">
           Moeda:
-          <select
-            data-testid="currency-input"
-            name="currency"
-            onChange={ handleChange }
-          >
-            {dataCurrency.map((currency, index) => (
-              <option key={ index } value={ currency }>{currency}</option>))}
-          </select>
+          <div className="select is-primary">
+            <select
+              data-testid="currency-input"
+              name="currency"
+              value={ currency }
+              onChange={ handleChange }
+            >
+              {dataCurrency.map((item, index) => (
+                <option key={ index } value={ item }>{item}</option>))}
+            </select>
+          </div>
         </label>
         <label htmlFor="method-input">
           Método de pagamento:
-          <select data-testid="method-input" name="method" onChange={ handleChange }>
-            <option value="Dinheiro">Dinheiro</option>
-            <option value="Cartão de crédito">Cartão de crédito</option>
-            <option value="Cartão de débito">Cartão de débito</option>
-          </select>
+          <div className="select is-primary">
+            <select
+              data-testid="method-input"
+              name="method"
+              value={ method }
+              onChange={ handleChange }
+            >
+              <option value="Dinheiro">Dinheiro</option>
+              <option value="Cartão de crédito">Cartão de crédito</option>
+              <option value="Cartão de débito">Cartão de débito</option>
+            </select>
+          </div>
         </label>
         <label htmlFor="tag-input">
           Categoria da despesa:
-          <select data-testid="tag-input" name="tag" onChange={ handleChange }>
-            <option value="Alimentação">Alimentação</option>
-            <option value="Lazer">Lazer</option>
-            <option value="Trabalho">Trabalho</option>
-            <option value="Transporte">Transporte</option>
-            <option value="Saúde">Saúde</option>
-          </select>
+          <div className="select is-primary Tag">
+            <select
+              data-testid="tag-input"
+              name="tag"
+              value={ tag }
+              onChange={ handleChange }
+            >
+              <option value="Alimentação">Alimentação</option>
+              <option value="Lazer">Lazer</option>
+              <option value="Trabalho">Trabalho</option>
+              <option value="Transporte">Transporte</option>
+              <option value="Saúde">Saúde</option>
+            </select>
+          </div>
         </label>
         {
           edit
-            ? <button type="button" onClick={ changeExpenses }>Editar despesa</button>
-            : <button type="button" onClick={ handleClick }>Adicionar Despesa</button>
+            ? (
+              <button
+                className="button is-primary is-small"
+                type="button"
+                onClick={ changeExpenses }
+              >
+                Editar despesa
+
+              </button>
+            )
+            : (
+              <button
+                className="button is-black is-small"
+                type="button"
+                onClick={ handleClick }
+              >
+                Adicionar Despesa
+
+              </button>
+            )
         }
       </form>
     );
@@ -76,6 +113,9 @@ WalletForm.propTypes = {
   description: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
   changeExpenses: PropTypes.func.isRequired,
+  method: PropTypes.string.isRequired,
+  tag: PropTypes.string.isRequired,
+  currency: PropTypes.string.isRequired,
 };
 
 function mapStateToProps(state) {

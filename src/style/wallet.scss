@@ -1,0 +1,98 @@
+.wallet{
+    overflow-x: scroll;
+}
+
+.header {
+    min-width: 1000px;
+    display: flex;
+    justify-content: space-between;
+    background-color: black;
+    color: white;
+    align-items: center;
+    padding: 10px;
+    border-bottom: #00937F 2px solid;
+
+    div{
+        margin-right: 20px;
+
+        .email {
+            margin: 10px;
+            font-size: 15px;
+        }
+    
+        .total {
+            font-weight: 500;
+            font-size: 1.1em;
+            color: #00937F;
+        }
+    }
+
+}
+
+form {
+    min-width: 1000px;
+    display: flex;
+    font-size: 15px;
+    background-color: rgb(158, 157, 157);
+    padding: 10px;
+    color: black;
+    font-weight: 600;
+    align-items: center;
+    justify-content: space-evenly;
+
+    label{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .value {
+        width: 100px;
+    }
+
+    .Tag {
+      width: 140px;
+    }
+}
+
+    
+    table {
+        text-align: center;
+        width: 100%;
+        min-width: 1000px;
+        font-size: 15px;
+    }
+
+
+thead {
+    tr{
+        background-color: rgb(185, 183, 183);
+        width: 100vw;
+
+        th {
+            color: black;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            border: 1px solid white;
+        }
+    };
+}
+
+tbody {
+    width: 100vw;
+
+    tr{
+        background-color: #f1f1f1;
+        margin-bottom: 1px;
+
+        td {
+            color: black;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            border: 1px solid white;
+
+            button {
+                margin-right: 2px;
+            }
+            }
+    };
+}

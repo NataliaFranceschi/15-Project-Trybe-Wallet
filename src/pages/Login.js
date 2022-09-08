@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { user } from '../redux/actions';
+import '../style/login.scss';
+import trybeWallet from '../Walletbranco.png';
 
 class Login extends React.Component {
   constructor() {
@@ -41,35 +43,40 @@ class Login extends React.Component {
   render() {
     const { email, password, isDisable } = this.state;
     return (
-      <div>
-        <label htmlFor="email-input">
-          <input
-            type="email"
-            name="email"
-            data-testid="email-input"
-            onChange={ this.handleChange }
-            value={ email }
-            placeholder="E-mail"
-          />
-        </label>
-        <label htmlFor="password-input">
-          <input
-            type="password"
-            name="password"
-            data-testid="password-input"
-            onChange={ this.handleChange }
-            value={ password }
-            placeholder="Senha"
-          />
-        </label>
-        <button
-          type="button"
-          disabled={ isDisable }
-          onClick={ this.handleClick }
-        >
-          Entrar
+      <div className="login">
+        <form onSubmit={ this.handleClick }>
+          <img src={ trybeWallet } alt="logo" width={ 300 } />
+          <label htmlFor="email-input">
+            <input
+              className="input is-primary"
+              type="email"
+              name="email"
+              data-testid="email-input"
+              onChange={ this.handleChange }
+              value={ email }
+              placeholder="E-mail"
+            />
+          </label>
+          <label htmlFor="password-input">
+            <input
+              className="input is-primary"
+              type="password"
+              name="password"
+              data-testid="password-input"
+              onChange={ this.handleChange }
+              value={ password }
+              placeholder="Senha"
+            />
+          </label>
+          <button
+            className="button is-black"
+            type="submit"
+            disabled={ isDisable }
+          >
+            Entrar
 
-        </button>
+          </button>
+        </form>
       </div>
     );
   }

@@ -6,6 +6,7 @@ import WalletForm from '../components/WalletForm';
 import { deleteExpense, fetchCurrenciesAPI,
   addExpense, editExpense } from '../redux/actions';
 import Table from '../components/Table';
+import '../style/wallet.scss';
 
 class Wallet extends React.Component {
   constructor() {
@@ -60,6 +61,9 @@ class Wallet extends React.Component {
     this.setState({
       value: '',
       description: '',
+      currency: 'USD',
+      method: 'Dinheiro',
+      tag: 'Alimentação',
     });
   };
 
@@ -71,6 +75,9 @@ class Wallet extends React.Component {
       edit: true,
       value: expense.value,
       description: expense.description,
+      currency: expense.currency,
+      method: expense.method,
+      tag: expense.tag,
       id,
     });
   };
@@ -97,7 +104,7 @@ class Wallet extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="wallet">
         <Header />
         <WalletForm
           { ...this.state }

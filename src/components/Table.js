@@ -28,7 +28,9 @@ class Table extends Component {
                 <td>{expense.tag}</td>
                 <td>{expense.method}</td>
                 <td>{Number(expense.value).toFixed(2)}</td>
-                <td>{expense.exchangeRates[expense.currency].name}</td>
+                <td>
+                  {expense.exchangeRates[expense.currency].name}
+                </td>
                 <td>
                   {Number(expense.exchangeRates[expense.currency].ask)
                     .toFixed(2)}
@@ -41,6 +43,7 @@ class Table extends Component {
                 <td>Real</td>
                 <td id={ expense.id }>
                   <button
+                    className="button is-primary is-small"
                     type="button"
                     data-testid="edit-btn"
                     onClick={ editExpense }
@@ -49,6 +52,7 @@ class Table extends Component {
 
                   </button>
                   <button
+                    className="button is-small is-danger"
                     type="button"
                     data-testid="delete-btn"
                     onClick={ deleteItem }
