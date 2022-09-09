@@ -7,7 +7,7 @@ class WalletForm extends Component {
     const { dataCurrency, handleChange, handleClick, value,
       description, edit, changeExpenses, method, tag, currency } = this.props;
     return (
-      <form>
+      <form className="form">
         <label htmlFor="value-input">
           Despesa:
           <input
