@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/15-Project-Trybe-Wallet/static/css/main.5daf9cd2.css",
-    "main.js": "/15-Project-Trybe-Wallet/static/js/main.68e3513c.js",
+    "main.js": "/15-Project-Trybe-Wallet/static/js/main.84ffbf79.js",
     "static/media/Walletbranco.png": "/15-Project-Trybe-Wallet/static/media/Walletbranco.31de4e78c14ef8f40227.png",
     "static/media/Wallet.png": "/15-Project-Trybe-Wallet/static/media/Wallet.440b463dc9f9ddb830e7.png",
     "index.html": "/15-Project-Trybe-Wallet/index.html",
     "main.5daf9cd2.css.map": "/15-Project-Trybe-Wallet/static/css/main.5daf9cd2.css.map",
-    "main.68e3513c.js.map": "/15-Project-Trybe-Wallet/static/js/main.68e3513c.js.map"
+    "main.84ffbf79.js.map": "/15-Project-Trybe-Wallet/static/js/main.84ffbf79.js.map"
   },
   "entrypoints": [
     "static/css/main.5daf9cd2.css",
-    "static/js/main.68e3513c.js"
+    "static/js/main.84ffbf79.js"
   ]
 }
