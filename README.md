@@ -10,4 +10,6 @@ Projeto desenvolvido no curso da Trybe ao final do bloco 15* do Módulo 2 - Dese
  
  No projeto <strong>Trybe Wallet</strong> foi desenvolvida uma aplicação em React utilizando o Redux a qual é possível adicionar várias despesas em diversas moedas diferentes que serão convertidas para real. Cada despesa pode ser editada e excluida.
  
+ Veja o resultado: https://nataliafranceschi.github.io/15-Project-Trybe-Wallet/
+ 
 ![trybewallet](TrybeWallet.gif)
